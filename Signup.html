@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up - AI Person Tracker</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Remix Icons & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Orbitron&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      background-image: linear-gradient(rgba(0, 0, 20, 0.8), rgba(0, 0, 20, 0.8)),
+        url('https://readdy.ai/api/search-image?query=cybersecurity%20background%20with%20digital%20network%20connections%2C%20binary%20code%20flowing%2C%20dark%20blue%20and%20black%20tones%2C%20abstract%20digital%20elements%2C%20glowing%20blue%20lines%20representing%20data%20flow%2C%20high-tech%20security%20concept%2C%20futuristic%20cyber%20protection%20visualization&width=1920&height=1080&seq=1&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .form-input {
+      background-color: #0f172a;
+      color: white;
+      padding-left: 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #334155;
+      height: 2.75rem;
+    }
+
+    .dropdown-menu {
+      display: none;
+    }
+
+    .dropdown-container.open .dropdown-menu {
+      display: block;
+    }
+
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .glass {
+      background-color: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    }
+
+    .primary-btn:hover {
+      box-shadow: 0 0 10px #0ea5e9aa;
+    }
+
+    .dropdown-menu div:hover {
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+  <div class="glass rounded-2xl shadow-xl max-w-md w-full p-8">
+    <div class="mb-6 text-center">
+      <h1 class="text-4xl font-bold text-white" style="font-family: 'Pacifico', cursive;">Welcome</h1>
+      <p class="text-gray-300 mt-1">Create your account to continue</p>
+    </div>
+
+    <form class="space-y-5" novalidate>
+      <!-- Full Name -->
+      <div>
+        <label class="block text-sm text-gray-300 mb-1" for="fullName">Full Name</label>
+        <div class="relative">
+          <i class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="fullName" type="text" class="form-input w-full" placeholder="John Doe" />
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm text-gray-300 mb-1" for="email">Email Address</label>
+        <div class="relative">
+          <i class="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="email" type="email" class="form-input w-full" placeholder="your@email.com" />
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm text-gray-300 mb-1" for="password">Password</label>
+        <div class="relative">
+          <i class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="password" type="password" class="form-input w-full" placeholder="••••••••" />
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div>
+        <label class="block text-sm text-gray-300 mb-1" for="confirmPassword">Confirm Password</label>
+        <div class="relative">
+          <i class="ri-lock-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="confirmPassword" type="password" class="form-input w-full" placeholder="••••••••" />
+        </div>
+      </div>
+
+      <!-- Role Dropdown -->
+      <div>
+        <label class="block text-sm text-gray-300 mb-1">Select Role</label>
+        <div class="relative dropdown-container">
+          <button
+            type="button"
+            id="roleButton"
+            class="form-input w-full text-left flex justify-between items-center"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            <span id="selectedRole" class="text-white">Choose your role</span>
+            <i class="ri-arrow-down-s-line text-gray-400"></i>
+          </button>
+          <div
+            class="dropdown-menu absolute mt-1 w-full bg-white rounded-md border border-gray-200 z-10"
+            role="listbox"
+            aria-labelledby="roleButton"
+            tabindex="-1"
+          >
+            <div class="px-4 py-2 role-option cursor-pointer" data-value="agent" role="option">Agent</div>
+            <div class="px-4 py-2 role-option cursor-pointer" data-value="private-company" role="option">Private Company</div>
+            <div class="px-4 py-2 role-option cursor-pointer" data-value="crime" role="option">Crime</div>
+            <div class="px-4 py-2 role-option cursor-pointer" data-value="investigation" role="option">Investigation</div>
+          </div>
+          <input type="hidden" id="role" name="role" />
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div>
+        <button
+          type="submit"
+          class="primary-btn w-full text-white font-semibold text-base py-3 rounded-lg transition duration-200"
+        >
+          Sign Up
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-6 text-center">
+      <p class="text-sm text-gray-400">
+        Already have an account?
+        <a href="login.html" class="text-blue-400 hover:underline font-medium">Login</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

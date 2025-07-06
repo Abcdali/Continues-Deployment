@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Analysis Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .activity-bar {
+      background-color: #6366f1;
+      border-radius: 0.5rem 0.5rem 0 0;
+      flex: 1;
+      min-height: 20px;
+    }
+    .activity-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      height: 100px;
+    }
+    .post-item {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .post-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: white;
+      padding: 1rem;
+    }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .classification-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .classification-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .legal-icon {
+      background-color: #dcfce7;
+      color: #22c55e;
+    }
+    .illegal-icon {
+      background-color: #fee2e2;
+      color: #ef4444;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 0.5rem;
+      background: rgba(0,0,0,0.1);
+      border-radius: 0.25rem;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+    }
+    .legal-progress { background: #22c55e; }
+    .illegal-progress { background: #ef4444; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-400 to-purple-600 min-h-screen p-6 font-sans text-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center text-white mb-8">
+      <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-full flex items-center mr-4">← Back to Dashboard</button>
+      <h1 class="text-3xl font-bold">Profile Analysis</h1>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Sidebar -->
+      <div class="space-y-6">
+        <div class="bg-white bg-opacity-90 p-6 rounded-2xl text-center">
+          <div class="relative mx-auto w-32 h-32 rounded-full overflow-hidden mb-4">
+            <img src="https://i.pravatar.cc/150?img=3" alt="Profile" class="w-full h-full object-cover">
+            <div class="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-2 border-white rounded-full flex items-center justify-center text-white text-xs font-bold">✓</div>
+          </div>
+          <h2 class="text-xl font-bold text-gray-900">Ahmed Raza</h2>
+          <p class="text-gray-500">@ahmedraza92</p>
+        </div>
+
+        <div class="bg-white bg-opacity-90 p-6 rounded-2xl space-y-4">
+          <h3 class="text-lg font-semibold">Connected Accounts</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center bg-white bg-opacity-70 p-3 rounded-xl">
+              <span class="text-blue-600 font-medium">Facebook</span>
+              <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">Connected</span>
+            </div>
+            <div class="flex justify-between items-center bg-white bg-opacity-70 p-3 rounded-xl">
+              <span class="text-blue-400 font-medium">Twitter</span>
+              <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">Connected</span>
+            </div>
+            <div class="flex justify-between items-center bg-white bg-opacity-70 p-3 rounded-xl">
+              <span class="text-pink-500 font-medium">Instagram</span>
+              <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">Connected</span>
+            </div>
+          </div>
+          <div class="pt-4">
+            <h4 class="font-semibold text-gray-700 mb-2">Public Data Summary</h4>
+            <div class="grid grid-cols-2 gap-3 text-center">
+              <div class="bg-white bg-opacity-70 p-3 rounded-xl">
+                <p class="text-xl font-bold">247</p>
+                <p class="text-sm text-gray-600">Posts</p>
+              </div>
+              <div class="bg-white bg-opacity-70 p-3 rounded-xl">
+                <p class="text-xl font-bold">1,843</p>
+                <p class="text-sm text-gray-600">Followers</p>
+              </div>
+              <div class="bg-white bg-opacity-70 p-3 rounded-xl">
+                <p class="text-xl font-bold">512</p>
+                <p class="text-sm text-gray-600">Following</p>
+              </div>
+              <div class="bg-white bg-opacity-70 p-3 rounded-xl">
+                <p class="text-xl font-bold">89%</p>
+                <p class="text-sm text-gray-600">Engagement</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Map Section -->
+        <div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Location Map</h2>
+          <iframe class="w-full rounded-lg border" style="height: 500px;" src="https://maps.google.com/maps?q=New York&output=embed" allowfullscreen></iframe>
+          <button id="generateReportBtn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300">
+            Generate Report
+          </button>
+        </div>
+
+        <!-- Activity -->
+        <div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Weekly Activity</h3>
+          <div class="activity-chart mb-2">
+            <div class="activity-bar" style="height: 40%;"></div>
+            <div class="activity-bar" style="height: 70%;"></div>
+            <div class="activity-bar" style="height: 60%;"></div>
+            <div class="activity-bar" style="height: 85%;"></div>
+            <div class="activity-bar" style="height: 95%;"></div>
+            <div class="activity-bar" style="height: 80%;"></div>
+            <div class="activity-bar" style="height: 55%;"></div>
+          </div>
+          <div class="flex justify-between text-gray-600 text-sm">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </div>
+
+        <!-- Post Classification -->
+        <div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Post Classification</h3>
+          <div class="analysis-grid">
+            <div class="classification-item">
+              <div class="classification-icon legal-icon">✓</div>
+              <div>
+                <h4 class="font-semibold text-gray-800">Legal Posts</h4>
+                <p class="text-lg font-bold">78%</p>
+                <div class="progress-bar"><div class="progress-fill legal-progress" style="width: 78%;"></div></div>
+              </div>
+            </div>
+            <div class="classification-item">
+              <div class="classification-icon illegal-icon">⚠</div>
+              <div>
+                <h4 class="font-semibold text-gray-800">Illegal Posts</h4>
+                <p class="text-lg font-bold">22%</p>
+                <div class="progress-bar"><div class="progress-fill illegal-progress" style="width: 22%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="reportModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-6 w-11/12 max-w-lg shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">AI Profile Report</h3>
+      <p class="text-gray-600 mb-2">
+        Detected Emotions: 😊 Happy, 😠 Angry<br />
+        Location Estimate: New York City<br />
+        Online Activity: Active in last 24 hours<br />
+        Legality Score: ✅ Legal Profile
+      </p>
+      <div class="mt-4 flex justify-end gap-4">
+        <button id="downloadReport" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Download</button>
+        <button id="closeReport" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const generateReportBtn = document.getElementById("generateReportBtn");
+      const reportModal = document.getElementById("reportModal");
+      const closeReport = document.getElementById("closeReport");
+      const downloadReport = document.getElementById("downloadReport");
+
+      generateReportBtn.addEventListener("click", () => {
+        reportModal.classList.remove("hidden");
+      });
+
+      closeReport.addEventListener("click", () => {
+        reportModal.classList.add("hidden");
+      });
+
+      downloadReport.addEventListener("click", () => {
+        const reportContent = `
+AI Profile Report
+
+Detected Emotions: 😊 Happy, 😠 Angry
+Location Estimate: New York City
+Online Activity: Active in last 24 hours
+Legality Score: ✅ Legal Profile
+        `;
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'AI_Profile_Report.txt';
+        link.click();
+      });
+    });
+  </script>
+</body>
+</html>

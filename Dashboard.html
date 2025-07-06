@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Person Tracker</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4f46e5", secondary: "#9333ea" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f7ff;
+      background-image: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.03) 0%, transparent 25%),
+                        radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.03) 0%, transparent 20%);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      }
+      input:focus {
+      outline: none;
+      border-color: #4f46e5;
+      }
+      .custom-shadow {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col items-center">
+      <header class="w-full bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-center">
+          <div class="flex items-center gap-3">
+            <img
+              src="https://static.readdy.ai/image/31402d4f77403f1bb9621603f42db742/7987f39d242b4eff6cd0083798c188a5.png"
+              alt="Logo"
+              class="w-10 h-10 object-contain"
+            />
+            <h1 class="text-2xl font-['Pacifico'] text-gray-800">
+              AI Person Tracker
+            </h1>
+          </div>
+        </div>
+      </header>
+      <main class="container mx-auto px-4 py-8 flex-1 w-full max-w-3xl">
+        <div class="bg-white rounded shadow-sm p-6 mb-8">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center"
+            >
+              <i class="ri-user-line ri-lg text-gray-500"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">Logged in as</p>
+              <p class="text-gray-800 font-medium">
+                alexander.morgan@gmail.com
+              </p>
+            </div>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Track Social Media Profile
+          </h2>
+          <div class="relative mb-4">
+            <div
+              class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+            >
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              placeholder="Enter username, email or name"
+              class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded focus:ring-2 focus:ring-primary/20"
+            />
+          </div>
+          <a href="Profile_Analysis_UserFriendly.html">
+            <button
+            class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-4 !rounded-button font-medium transition-colors whitespace-nowrap"
+          >
+            Track Profile
+          </button>
+          </a>
+        </div>
+        <div class="bg-white rounded shadow-sm p-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-6">
+            Recent Tracked Profiles
+          </h2>
+          <div class="space-y-4">
+            <div
+              class="border-b border-gray-100 pb-4 hover:bg-gray-50 transition-colors rounded p-2"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-user-line text-blue-500"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-800">Emily Richardson</p>
+                    <p class="text-gray-500 text-sm">
+                      emily.richardson@outlook.com
+                    </p>
+                  </div>
+                </div>
+                <span class="text-sm text-gray-400">2 days ago</span>
+              </div>
+            </div>
+            <div
+              class="border-b border-gray-100 pb-4 hover:bg-gray-50 transition-colors rounded p-2"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-user-line text-green-500"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-800">David Nguyen</p>
+                    <p class="text-gray-500 text-sm">david.nguyen@gmail.com</p>
+                  </div>
+                </div>
+                <span class="text-sm text-gray-400">5 days ago</span>
+              </div>
+            </div>
+            <div class="hover:bg-gray-50 transition-colors rounded p-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-user-line text-purple-500"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-800">Sophia Martinez</p>
+                    <p class="text-gray-500 text-sm">sophia.m@company.io</p>
+                  </div>
+                </div>
+                <span class="text-sm text-gray-400">1 week ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const trackButton = document.querySelector("button");
+        const inputField = document.querySelector("input");
+        trackButton.addEventListener("click", function () {
+          if (inputField.value.trim() !== "") {
+            alert("Tracking profile: " + inputField.value);
+            inputField.value = "";
+          } else {
+            alert("Please enter a username, email or name to track");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

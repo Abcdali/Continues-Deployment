@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Cyber Security</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#0ea5e9", secondary: "#0f172a" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Inter', sans-serif;
+          background-color: #000;
+          min-height: 100vh;
+      }
+      .cyber-bg {
+          background-image: linear-gradient(rgba(0, 0, 20, 0.7), rgba(0, 0, 20, 0.8)), url('https://readdy.ai/api/search-image?query=cybersecurity%20background%20with%20digital%20network%20connections%2C%20binary%20code%20flowing%2C%20dark%20blue%20and%20black%20tones%2C%20abstract%20digital%20elements%2C%20glowing%20blue%20lines%20representing%20data%20flow%2C%20high-tech%20security%20concept%2C%20futuristic%20cyber%20protection%20visualization&width=1920&height=1080&seq=1&orientation=landscape');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+      }
+      .glass-card {
+          backdrop-filter: blur(8px);
+          background-color: rgba(15, 23, 42, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+      }
+      .cyber-title {
+          font-family: 'Orbitron', sans-serif;
+          text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+          -webkit-box-shadow: 0 0 0px 1000px #0f172a inset;
+          -webkit-text-fill-color: white;
+          transition: background-color 5000s ease-in-out 0s;
+      }
+      input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 4px;
+          background-color: transparent;
+          display: inline-block;
+          position: relative;
+          cursor: pointer;
+      }
+      input[type="checkbox"]:checked {
+          background-color: #0ea5e9;
+          border-color: #0ea5e9;
+      }
+      input[type="checkbox"]:checked::after {
+          content: "";
+          position: absolute;
+          left: 6px;
+          top: 2px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+      .glow-effect {
+          position: relative;
+      }
+      .glow-effect::after {
+          content: "";
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(45deg, #0ea5e9, transparent, #0ea5e9);
+          z-index: -1;
+          filter: blur(10px);
+          opacity: 0;
+          transition: opacity 0.3s;
+          border-radius: 12px;
+      }
+      .glow-effect:hover::after {
+          opacity: 0.7;
+      }
+      .login-btn {
+          background: linear-gradient(135deg, #0ea5e9, #2563eb);
+          transition: all 0.3s;
+      }
+      .login-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+      }
+      .binary-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url('https://readdy.ai/api/search-image?query=abstract%20binary%20code%20pattern%2C%20very%20subtle%2C%20transparent%2C%20just%20hints%20of%20blue%20digital%20code%20on%20black%20background%2C%20minimal%20density%2C%20cybersecurity%20theme&width=1920&height=1080&seq=2&orientation=landscape');
+          background-size: cover;
+          opacity: 0.1;
+          mix-blend-mode: screen;
+          pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="cyber-bg flex items-center justify-center p-4 min-h-screen">
+    <div class="binary-overlay"></div>
+
+    <div class="w-full max-w-md z-10">
+      <div class="text-center mb-8">
+        <h1
+          class="cyber-title text-4xl md:text-5xl font-bold text-white tracking-wider mb-2"
+        >
+          LOGIN
+        </h1>
+        <p class="text-blue-300 text-sm">Secure Access Portal</p>
+      </div>
+
+      <div
+        id="error-message"
+        class="hidden mb-4 p-3 bg-red-900/70 text-red-200 rounded text-sm"
+      >
+        <div class="flex items-center">
+          <div class="w-6 h-6 flex items-center justify-center mr-2">
+            <i class="ri-error-warning-line text-red-300"></i>
+          </div>
+          <span>Invalid email or password. Please try again.</span>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-8 glow-effect">
+        <form id="login-form">
+          <div class="mb-6">
+            <label for="email" class="block text-blue-300 text-sm mb-2"
+              >Email Address</label
+            >
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10"
+              >
+                <i class="ri-mail-line text-blue-400"></i>
+              </div>
+              <input
+                type="email"
+                id="email"
+                class="w-full bg-secondary/80 border-none text-white pl-10 py-3 rounded focus:ring-2 focus:ring-primary focus:outline-none"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label for="password" class="block text-blue-300 text-sm"
+                >Password</label
+              >
+              <a
+                href="#"
+                class="text-xs text-blue-400 hover:text-primary transition-colors"
+                >Forgot Password?</a
+              >
+            </div>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10"
+              >
+                <i class="ri-lock-line text-blue-400"></i>
+              </div>
+              <input
+                type="password"
+                id="password"
+                class="w-full bg-secondary/80 border-none text-white pl-10 py-3 rounded focus:ring-2 focus:ring-primary focus:outline-none"
+                placeholder="Enter your password"
+                required
+              />
+              <div
+                class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer w-10 h-10"
+                id="toggle-password"
+              >
+                <i class="ri-eye-off-line text-blue-400" id="password-icon"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <input type="checkbox" id="remember" class="mr-2" />
+            <label for="remember" class="text-sm text-blue-200"
+              >Remember me for 30 days</label
+            >
+          </div>
+
+        <a href="Dashboard.html">
+            <button
+            type="submit"
+            class="login-btn w-full py-3 text-white font-medium rounded-button flex items-center justify-center whitespace-nowrap"
+          >
+            <span id="login-text">Login to Dashboard</span>
+            <div
+              id="loading-spinner"
+              class="hidden ml-2 w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+            ></div>
+          </button>
+        </a>
+        </form>
+
+        <div class="mt-6 text-center">
+          <p class="text-blue-200 text-sm">
+            Don't have an account?
+            <a href="Signup.html" class="text-primary hover:underline">Register</a>
+          </p>
+        </div>
+
+        <div
+          class="mt-8 pt-6 border-t border-blue-900/50 flex items-center justify-center"
+        >
+          <div class="w-8 h-8 flex items-center justify-center mr-2">
+            <i class="ri-shield-keyhole-line text-blue-400 ri-lg"></i>
+          </div>
+          <span class="text-xs text-blue-300"
+            >Protected by advanced encryption</span
+          >
+        </div>
+      </div>
+
+      <div class="mt-6 text-center">
+        <p class="text-xs text-blue-400/70">
+          © 2025 Cyber Security. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("login-form");
+        const errorMessage = document.getElementById("error-message");
+        const loginText = document.getElementById("login-text");
+        const loadingSpinner = document.getElementById("loading-spinner");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Show loading state
+          loginText.textContent = "Authenticating...";
+          loadingSpinner.classList.remove("hidden");
+
+          // Simulate authentication delay
+          setTimeout(function () {
+            // Show error (simulating invalid credentials)
+            errorMessage.classList.remove("hidden");
+
+            // Reset button
+            loginText.textContent = "Login to Dashboard";
+            loadingSpinner.classList.add("hidden");
+          }, 1500);
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const togglePassword = document.getElementById("toggle-password");
+        const passwordField = document.getElementById("password");
+        const passwordIcon = document.getElementById("password-icon");
+
+        togglePassword.addEventListener("click", function () {
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            passwordIcon.classList.remove("ri-eye-off-line");
+            passwordIcon.classList.add("ri-eye-line");
+          } else {
+            passwordField.type = "password";
+            passwordIcon.classList.remove("ri-eye-line");
+            passwordIcon.classList.add("ri-eye-off-line");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -157,6 +157,36 @@
     </div>
   </div>
 
-  <script src="script.js" defer></script>
+  <!-- Dropdown Functionality Script -->
+  <script>
+    const roleButton = document.getElementById('roleButton');
+    const dropdownContainer = roleButton.closest('.dropdown-container');
+    const dropdownMenu = dropdownContainer.querySelector('.dropdown-menu');
+    const selectedRole = document.getElementById('selectedRole');
+    const hiddenInput = document.getElementById('role');
+
+    // Toggle dropdown
+    roleButton.addEventListener('click', () => {
+      dropdownContainer.classList.toggle('open');
+    });
+
+    // Select role
+    dropdownMenu.querySelectorAll('.role-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const role = option.getAttribute('data-value');
+        selectedRole.textContent = option.textContent;
+        hiddenInput.value = role;
+        dropdownContainer.classList.remove('open');
+      });
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownContainer.contains(e.target)) {
+        dropdownContainer.classList.remove('open');
+      }
+    });
+  </script>
+
 </body>
 </html>

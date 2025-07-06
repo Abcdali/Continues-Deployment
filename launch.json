@@ -4,8 +4,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open welcome.html",
-            "file": "d:\\D\\Techno\\welcome.html"
+            "name": "Open Index.html",
+            "file": "d:\\D\\Techno\\Index.html"
         }
     ]
 }
